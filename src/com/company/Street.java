@@ -12,6 +12,12 @@ public class Street {
         initRent(rent);
         tag = color.charAt(0);
     }
+    Street(int xCoordinate, int yCoordinate){
+        x = xCoordinate;
+        y = yCoordinate;
+        color = " ";
+        tag = ' ';
+    }
 
     public int x;
     public int y;
@@ -41,6 +47,8 @@ public class Street {
             case "blueDark":
                 housePrice = 200;
                 break;
+            default:
+                housePrice = 0;
         }
     }
     private void initRent(int[] rent){
