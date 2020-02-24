@@ -10,6 +10,7 @@ public class Map {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
     };
 
+
     void print() {
         for (int i = 0; i < map[1].length; i++) {
             System.out.print(map[1][i] + " ");
@@ -23,5 +24,59 @@ public class Map {
     }
 
 
+    Street[][] streets = {
+            {
+                    new Street(1, 0,
+                            "brown", new int[]{2, 10, 30, 90, 160, 250}, 60),
+                    new Street(3, 0,
+                            "brown", new int[]{4, 20, 60, 180, 320, 450}, 60),
+                    new Street(6, 0,
+                            "blueLight", new int[]{6, 30, 90, 270, 400, 550}, 100),
+                    new Street(8, 0,
+                            "blueLight", new int[]{6, 30, 90, 270, 400, 550}, 100),
+                    new Street(9, 0,
+                            "blueLight", new int[]{8, 40, 100, 300, 450, 600}, 120),
+            },
+            {
+                    new Street(1, 1,
+                            "pink", new int[]{10, 50, 150, 450, 625, 750}, 140),
+                    new Street(3, 1,
+                            "pink", new int[]{10, 50, 150, 450, 625, 750}, 140),
+                    new Street(4, 1,
+                            "pink", new int[]{12, 60, 180, 500, 700, 900}, 160),
+                    new Street(6, 1,
+                            "orange", new int[]{14, 70, 200, 550, 750, 950}, 180),
+                    new Street(8, 1,
+                            "orange", new int[]{14, 70, 200, 550, 750, 950}, 180),
+                    new Street(9, 1,
+                            "orange", new int[]{16, 80, 220, 600, 800, 1000}, 200),
+            },
+            {
+                    new Street(1, 2,
+                            "red", new int[]{18, 90, 250, 700, 875, 1050}, 220),
+                    new Street(3, 2,
+                            "red", new int[]{18, 90, 250, 700, 875, 1050}, 220),
+                    new Street(4, 2,
+                            "red", new int[]{20, 100, 300, 750, 925, 1100}, 240),
+                    new Street(6, 2,
+                            "yellow", new int[]{22, 110, 330, 800, 975, 1150}, 260),
+                    new Street(7, 2,
+                            "yellow", new int[]{22, 110, 330, 800, 975, 1150}, 260),
+                    new Street(9, 2,
+                            "yellow", new int[]{24, 120, 360, 850, 1025, 1200}, 280),
+            },
+            {
+                    new Street(1, 3,
+                            "green", new int[]{26, 130, 390, 900, 1100, 1275}, 300),
+                    new Street(2, 3,
+                            "green", new int[]{26, 130, 390, 900, 1100, 1275}, 300),
+                    new Street(4, 3,
+                            "green", new int[]{28, 150, 450, 1000, 1200, 1400}, 320),
+                    new Street(7, 3,
+                            "blueDark", new int[]{35, 175, 500, 1100, 1300, 1500}, 350),
+                    new Street(9, 3,
+                            "blueDark", new int[]{50, 200, 600, 1400, 1700, 2000}, 400),
+            }
+    };
 
 }

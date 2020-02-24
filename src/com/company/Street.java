@@ -2,15 +2,15 @@ package com.company;
 
 public class Street {
 
-    Street(int xCoordinate, int yCoordinate, String nameOfStreet, String color, int[] rent, int priceOfStreet){
+    Street(int xCoordinate, int yCoordinate, String color, int[] rent, int priceOfStreet){
         x = xCoordinate;
         y = yCoordinate;
-        name = nameOfStreet;
         price = priceOfStreet;
         mortgage = priceOfStreet / 2;
         this.color = color;
         initHousePrice(color);
         initRent(rent);
+        tag = color.charAt(0);
     }
 
     public int x;
@@ -19,12 +19,12 @@ public class Street {
     public int mortgage;
     public int housePrice;
     public int[] rent = new int[6];
-    public String name;
+    public char tag;
     public String color;
     public String ownedBy;
 
     private void initHousePrice(String col){
-        switch (color){
+        switch (col){
             case "brown":
             case "blueLight":
                 housePrice = 50;

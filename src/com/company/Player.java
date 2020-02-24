@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Vector;
+
 public class Player {
 
     Player(int xPos, int yPos){
@@ -12,6 +14,7 @@ public class Player {
         name = Name;
     }
 
+    private Vector<Street> streetsOwned;
     public int x;
     public int y;
     public String name;
