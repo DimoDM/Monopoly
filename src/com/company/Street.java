@@ -38,11 +38,12 @@ public class Street {
     public String ownedBy = "";
 
     public void printStreet(){
-        if(mortgaged) System.out.println("MORTGAGED - color: " + color + " x: " + x + " y: " + y
+        if(mortgaged) System.out.println("MORTGAGED - color: " + color + " | x: " + x + " | y: " + y
                 + " | you can pay " + mortgage + "$ and return the street");
-        else System.out.println("color: " + color + " x: " + x + " y: " + y
-                + " price: " + price + "$ mortgage for " + mortgage
-                + "$ rent now: " + rent[numOfHouses] + "$ price of one house: " + price + "$");
+        else System.out.println("color: " + color + " | x: " + x + " | y: " + y
+                + " | price: " + price + "$ | mortgage for " + mortgage
+                + "$ | rent now: " + rent[numOfHouses] + "$ | price of one house: " + housePrice + "$ |"
+                + " number of houses: " + (numOfHouses <= 4 ? numOfHouses + " houses" : "1 hotel"));
     }
 
     private void initHousePrice(String col){
