@@ -11,27 +11,44 @@ public class Street {
         initHousePrice(color);
         initRent(rent);
         tag = color.charAt(0);
+        if(color.equals("blueDark")) tag = 'D';
+        hasStreet = true;
     }
     Street(int xCoordinate, int yCoordinate){
         x = xCoordinate;
         y = yCoordinate;
         color = " ";
         tag = ' ';
+        hasStreet = false;
     }
+    Street(){}
 
     public int x;
     public int y;
     public int price;
     public int mortgage;
     public int housePrice;
+    public int numOfHouses = 0;
     public int[] rent = new int[6];
     public char tag;
+    public boolean mortgaged = false;
+    public boolean hasStreet;
+    public boolean fullStreet = false;
     public String color;
-    public String ownedBy;
+    public String ownedBy = "";
+
+    public void printStreet(){
+        if(mortgaged) System.out.println("MORTGAGED - color: " + color + " | x: " + x + " | y: " + y
+                + " | you can pay " + mortgage + "$ and return the street");
+        else System.out.println("color: " + color + " | x: " + x + " | y: " + y
+                + " | price: " + price + "$ | mortgage for " + mortgage
+                + "$ | rent now: " + rent[numOfHouses] + "$ | price of one house: " + housePrice + "$ |"
+                + " number of houses: " + (numOfHouses <= 4 ? numOfHouses + " houses" : "1 hotel"));
+    }
 
     private void initHousePrice(String col){
         switch (col){
-            case "brown":
+            case "Brown":
             case "blueLight":
                 housePrice = 50;
                 break;
