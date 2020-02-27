@@ -11,6 +11,7 @@ public class Street {
         initHousePrice(color);
         initRent(rent);
         tag = color.charAt(0);
+        if(color.equals("blueDark")) tag = 'D';
         hasStreet = true;
     }
     Street(int xCoordinate, int yCoordinate){
@@ -32,6 +33,7 @@ public class Street {
     public char tag;
     public boolean mortgaged = false;
     public boolean hasStreet;
+    public boolean fullStreet = false;
     public String color;
     public String ownedBy = "";
 
@@ -39,7 +41,8 @@ public class Street {
         if(mortgaged) System.out.println("MORTGAGED - color: " + color + " x: " + x + " y: " + y
                 + " | you can pay " + mortgage + "$ and return the street");
         else System.out.println("color: " + color + " x: " + x + " y: " + y
-                + " price: " + price + "$ mortgage for " + mortgage + "$ rent now: " + rent[numOfHouses]);
+                + " price: " + price + "$ mortgage for " + mortgage
+                + "$ rent now: " + rent[numOfHouses] + "$ price of one house: " + price + "$");
     }
 
     private void initHousePrice(String col){
