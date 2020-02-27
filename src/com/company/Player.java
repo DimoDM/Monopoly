@@ -41,5 +41,21 @@ public class Player {
         }else x += distance;
     }
 
+    void chooseAction(){
+
+    }
+
+    void buyStreet(){
+        System.out.println("this street is now mine");
+    }
+
+    void printStreets(){
+
+    }
+
+    void payBills(){
+
+    }
+
 
 }

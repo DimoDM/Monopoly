@@ -37,6 +37,13 @@ public class Monopoly {
         int dice = input.nextInt();
         player[index].move(dice);
 
+        Street currentStreet = new Street();
+        currentStreet = map1.streets[player[index].x][player[index].y];
+
+        if(currentStreet.hasStreet && currentStreet.ownedBy.equals("")){
+            player[index].buyStreet();
+        }
+
         index++;
         if (index > numOfPlayers - 1) index = 0;
     }

@@ -11,13 +11,16 @@ public class Street {
         initHousePrice(color);
         initRent(rent);
         tag = color.charAt(0);
+        hasStreet = true;
     }
     Street(int xCoordinate, int yCoordinate){
         x = xCoordinate;
         y = yCoordinate;
         color = " ";
         tag = ' ';
+        hasStreet = false;
     }
+    Street(){}
 
     public int x;
     public int y;
@@ -26,8 +29,9 @@ public class Street {
     public int housePrice;
     public int[] rent = new int[6];
     public char tag;
+    public boolean hasStreet;
     public String color;
-    public String ownedBy;
+    public String ownedBy = "";
 
     private void initHousePrice(String col){
         switch (col){
