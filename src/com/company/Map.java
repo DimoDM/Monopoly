@@ -38,10 +38,10 @@ public class Map {
     Street[][] streets = {
             {
                     new Street(0, 0,
-                            "brown", new int[]{2, 10, 30, 90, 160, 250}, 60),
+                            "Brown", new int[]{2, 10, 30, 90, 160, 250}, 60),
                     new Street(1, 0),
                     new Street(2, 0,
-                            "brown", new int[]{4, 20, 60, 180, 320, 450}, 60),
+                            "Brown", new int[]{4, 20, 60, 180, 320, 450}, 60),
                     new Street(3, 0),
                     new Street(4, 0),
                     new Street(5, 0,

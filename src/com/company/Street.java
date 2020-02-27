@@ -27,15 +27,21 @@ public class Street {
     public int price;
     public int mortgage;
     public int housePrice;
+    public int numOfHouses = 0;
     public int[] rent = new int[6];
     public char tag;
     public boolean hasStreet;
     public String color;
     public String ownedBy = "";
 
+    public void printStreet(){
+        System.out.println("color: " + color + " x: " + x + " y: " + y
+                + " price: " + price + " rent now: " + rent[numOfHouses]);
+    }
+
     private void initHousePrice(String col){
         switch (col){
-            case "brown":
+            case "Brown":
             case "blueLight":
                 housePrice = 50;
                 break;
