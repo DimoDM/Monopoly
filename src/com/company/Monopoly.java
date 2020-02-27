@@ -40,18 +40,33 @@ public class Monopoly {
         
         Street currentStreet;
         currentStreet = board.streets[player[index].y][player[index].x];
-        player[index].chooseAction(currentStreet);
 
-        actions(player[index]);
+        //actions of player
+        if(currentStreet.ownedBy.equals("")) player[index].chooseAction(currentStreet);
+        else {
+            int i = getIndexOfOwner(currentStreet);
+            player[index].chooseAction(player[i].streetsOwned.get(player[i].streetsOwned.indexOf(currentStreet)));
+        }
+
+        //pay rent if it's necessary
+        if(currentStreet.hasStreet && currentStreet.ownedBy != player[index].name){
+            int i = getIndexOfOwner(currentStreet);
+            player[i].balance += currentStreet.rent[currentStreet.numOfHouses];
+        }
 
 
         index++;
         if (index > numOfPlayers - 1) index = 0;
     }
 
-    private void actions(Player player) {
-        
+    private int getIndexOfOwner(Street street){
+        for (int i = 0; i < numOfPlayers; i++) {
+            if(street.ownedBy.equals(player[i].name)){
+                return i;
+            }
+        }
     }
+
 
 
 }

@@ -30,13 +30,16 @@ public class Street {
     public int numOfHouses = 0;
     public int[] rent = new int[6];
     public char tag;
+    public boolean mortgaged = false;
     public boolean hasStreet;
     public String color;
     public String ownedBy = "";
 
     public void printStreet(){
-        System.out.println("color: " + color + " x: " + x + " y: " + y
-                + " price: " + price + " rent now: " + rent[numOfHouses]);
+        if(mortgaged) System.out.println("MORTGAGED - color: " + color + " x: " + x + " y: " + y
+                + " | you can pay " + mortgage + "$ and return the street");
+        else System.out.println("color: " + color + " x: " + x + " y: " + y
+                + " price: " + price + "$ mortgage for " + mortgage + "$ rent now: " + rent[numOfHouses]);
     }
 
     private void initHousePrice(String col){

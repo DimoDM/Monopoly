@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4ef82a6e-4703-4749-8261-014a81b2e7f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Monopoly/com/company/Street.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Monopoly/com/company/Street.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Monopoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Monopoly.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Street.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Street.java" afterDir="false" />
