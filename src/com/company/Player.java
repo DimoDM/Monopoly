@@ -22,7 +22,7 @@ public class Player {
     public int x;
     public int y;
     public boolean isInJail = false;
-    public boolean haveMortgagedStreet = false;
+    public boolean isRentPaid = false;
     int balance = 2000;
     public String name;
 
@@ -44,6 +44,13 @@ public class Player {
                 if (y > 3) y = 0;
             }
         } else x += distance;
+    }
+
+    public boolean haveMortgagedStreet() {
+        for (int i = 0; i < streetsOwned.size(); i++) {
+            if(streetsOwned.get(i).mortgaged) return true;
+        }
+        return false;
     }
 
 
