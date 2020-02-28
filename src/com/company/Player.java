@@ -21,6 +21,8 @@ public class Player {
     Scanner input = new Scanner(System.in);
     public int x;
     public int y;
+    public boolean isInJail = false;
+    public boolean haveMortgagedStreet = false;
     int balance = 2000;
     public String name;
 
