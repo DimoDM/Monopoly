@@ -38,12 +38,11 @@ public class Monopoly {
         System.out.println(player.get(index).name + " is on turn");
 
         int dice;
-        if(!player.get(index).isInJail) {
+        if (!player.get(index).isInJail) {
             System.out.println("Press enter to roll dices");
             promptEnterKey();
             dice = rollAndReturnDices();
-        }
-        else {
+        } else {
             player.get(index).isInJail = false;
             dice = 0;
         }
@@ -56,13 +55,20 @@ public class Monopoly {
 
         System.out.println("-----------------------------------------");
 
+        if (player.get(index).balance < 0) {
+            System.out.println(player.get(index) + " lost the game");
+            player.remove(index);
+            index--;
+            numOfPlayers--;
+        }
+
         endTurn();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void checkForWinner(){
-        if(numOfPlayers == 1) {
+    private void checkForWinner() {
+        if (numOfPlayers == 1) {
             System.out.println(player.get(index).name + " is winner. Congratulation!");
             isRunning = false;
         }
@@ -73,7 +79,7 @@ public class Monopoly {
         Random rand = new Random();
         int[] dices = {rand.nextInt(5) + 1, rand.nextInt(5) + 1};
         System.out.println("You roll " + dices[0] + " and " + dices[1] + ". You move " + (dices[0] + dices[1]) + " steps forward");
-        if(dices[0] == dices[1]){
+        if (dices[0] == dices[1]) {
             System.out.println("You will be again");
             turn = -1;
         }
@@ -84,13 +90,13 @@ public class Monopoly {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
-    private void printMapAndPlayers(){
-        for (int i = 0; i < numOfPlayers; i++) board.map[player.get(i).y][player.get(i).x] = i + 1;
+    private void printMapAndPlayers() {
+        for (int i = 0; i < numOfPlayers; i++) board.map[player.get(i).y][player.get(i).x] = player.get(i).tag;
         board.print();
-        for (int i = 0; i < numOfPlayers; i++) board.map[player.get(i).y][player.get(i).x] = 0;
+        for (int i = 0; i < numOfPlayers; i++) board.map[player.get(i).y][player.get(i).x] = '0';
     }
 
-    private void endTurn(){
+    private void endTurn() {
         printALotsOfRows();
         player.get(index).isRentPaid = false;
         index++;
@@ -114,7 +120,7 @@ public class Monopoly {
 
     private void chooseAction(Street street, Player player) {
         System.out.println("Your balance is " + player.balance + "$");
-        if(player.streetsOwned.size() == 0 && !street.hasStreet) {
+        if (player.streetsOwned.size() == 0 && !street.hasStreet) {
             System.out.println("press enter to end your turn");
             promptEnterKey();
             return;
@@ -122,7 +128,7 @@ public class Monopoly {
         int currentOption = 1;
         System.out.println("Enter " + currentOption + " to mortgage street");
         currentOption++;
-        System.out.println("Enter " + currentOption +" to see all owned streets");
+        System.out.println("Enter " + currentOption + " to see all owned streets");
         currentOption++;
 
         int optionFlag = 0;
@@ -134,14 +140,13 @@ public class Monopoly {
             System.out.println("Enter " + currentOption + " to pay rent. Rent will cost " + street.rent[street.numOfHouses]);
             optionFlag = 2;
             currentOption++;
-        }
-        else this.player.get(index).isRentPaid = true;
+        } else this.player.get(index).isRentPaid = true;
 
-        if(hasCompletedStreets()){
+        if (hasCompletedStreets()) {
             System.out.println("Enter " + currentOption + " to build houses");
             currentOption++;
         }
-        if(player.haveMortgagedStreet()){
+        if (player.haveMortgagedStreet()) {
             System.out.println("Enter " + currentOption + " to buy mortgaged street");
         }
 
@@ -165,24 +170,23 @@ public class Monopoly {
                     buyStreet(street);
                     playerActions();
                     break;
-                }
-                else if (flag == 2) {
+                } else if (flag == 2) {
                     payRent(street);
                     playerActions();
                     break;
                 }
             case 4:
-                if(hasCompletedStreets()) buildHouses();
-                else if(player.get(index).haveMortgagedStreet()) buyMortgagedStreet();
+                if (hasCompletedStreets()) buildHouses();
+                else if (player.get(index).haveMortgagedStreet()) buyMortgagedStreet();
                 playerActions();
                 break;
             case 5:
-                if(!hasCompletedStreets()) buyMortgagedStreet();
+                if (!hasCompletedStreets()) buyMortgagedStreet();
                 playerActions();
                 break;
             case 0:
-                if(player.get(index).isRentPaid)
-                break;
+                if (player.get(index).isRentPaid)
+                    break;
                 else {
                     System.out.println("You must pay the rent first");
                     playerActions();
@@ -191,7 +195,7 @@ public class Monopoly {
         }
     }
 
-    public static void promptEnterKey(){
+    public static void promptEnterKey() {
         try {
             int read = System.in.read(new byte[2]);
         } catch (IOException e) {
@@ -214,7 +218,7 @@ public class Monopoly {
         System.out.println("0 exit");
         int choose = input.nextInt();
         choose--;
-        if(choose == - 1) return;
+        if (choose == -1) return;
 
         Street playerStreet = player.get(index).streetsOwned.get(choose);
         if (!player.get(index).streetsOwned.get(choose).mortgaged) {
@@ -225,13 +229,13 @@ public class Monopoly {
         } else System.out.println("This street is already mortgaged.");
     }
 
-    private void buyMortgagedStreet(){
+    private void buyMortgagedStreet() {
         int[] streets = new int[25];
         int indexForStreetsArr = 0;
         Street playerStreets;
         for (int i = 0; i < player.get(index).streetsOwned.size(); i++) {
             playerStreets = player.get(index).streetsOwned.get(i);
-            if(playerStreets.mortgaged) {
+            if (playerStreets.mortgaged) {
                 streets[indexForStreetsArr] = i;
                 System.out.print((indexForStreetsArr + 1) + " ");
                 playerStreets.printStreet();
@@ -242,10 +246,10 @@ public class Monopoly {
         System.out.println("Choose street to buy or 0 to exit: ");
         int choose = input.nextInt();
         choose--;
-        if(choose == -1) return;
+        if (choose == -1) return;
 
         playerStreets = player.get(index).streetsOwned.get(streets[choose]);
-        if(!(player.get(index).balance - playerStreets.mortgage < 0)){
+        if (!(player.get(index).balance - playerStreets.mortgage < 0)) {
             player.get(index).balance -= playerStreets.mortgage;
             player.get(index).streetsOwned.get(streets[choose]).mortgaged = false;
             board.streets[playerStreets.y][playerStreets.x].mortgaged = false;
@@ -263,7 +267,7 @@ public class Monopoly {
     }
 
     private void buyStreet(Street street) {
-        if(player.get(index).balance < street.price) {
+        if (player.get(index).balance < street.price) {
             System.out.println("You don't have enough money to buy this.");
             return;
         }
@@ -280,7 +284,7 @@ public class Monopoly {
         Street playerStreets;
         for (int i = 0; i < player.get(index).streetsOwned.size(); i++) {
             playerStreets = player.get(index).streetsOwned.get(i);
-            if(playerStreets.fullStreet && !playerStreets.mortgaged) {
+            if (playerStreets.fullStreet && !playerStreets.mortgaged) {
 
                 streets[indexForStreetsArr] = i;
                 System.out.print((indexForStreetsArr + 1) + " ");
@@ -292,12 +296,12 @@ public class Monopoly {
         System.out.println("Choose street to build or 0 to exit: ");
         int choose = input.nextInt();
         choose--;
-        if(choose == -1) return;
+        if (choose == -1) return;
         System.out.println("How many houses you will build ?");
         int numOfHouses = input.nextInt();
 
         playerStreets = player.get(index).streetsOwned.get(streets[choose]);
-        if(!(player.get(index).balance - playerStreets.housePrice * numOfHouses < 0)){
+        if (!(player.get(index).balance - playerStreets.housePrice * numOfHouses < 0)) {
             player.get(index).balance -= playerStreets.housePrice * numOfHouses;
             player.get(index).streetsOwned.get(streets[choose]).numOfHouses += numOfHouses;
             board.streets[playerStreets.y][playerStreets.x].numOfHouses += numOfHouses;
@@ -310,14 +314,14 @@ public class Monopoly {
         int counter = 1;
         int maxCounter = color.equals("Brown") || color.equals("blueDark") ? 2 : 3;
         for (int i = 0; i < player.get(index).streetsOwned.size() - 1; i++) {
-            if(color.equals(player.get(index).streetsOwned.get(i).color)){
+            if (color.equals(player.get(index).streetsOwned.get(i).color)) {
                 counter++;
-                if(counter == maxCounter) break;
+                if (counter == maxCounter) break;
             }
         }
-        if(counter == maxCounter) {
+        if (counter == maxCounter) {
             for (int i = 0; i < player.get(index).streetsOwned.size(); i++) {
-                if(color.equals(player.get(index).streetsOwned.get(i).color)){
+                if (color.equals(player.get(index).streetsOwned.get(i).color)) {
                     player.get(index).streetsOwned.get(i).fullStreet = true;
                 }
             }
@@ -326,7 +330,7 @@ public class Monopoly {
 
     private boolean hasCompletedStreets() {
         for (int i = 0; i < player.get(index).streetsOwned.size(); i++) {
-            if(player.get(index).streetsOwned.get(i).fullStreet) return true;
+            if (player.get(index).streetsOwned.get(i).fullStreet) return true;
         }
         return false;
     }

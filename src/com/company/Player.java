@@ -15,12 +15,14 @@ public class Player {
         y = yPos;
         name = Name;
         mapLength = mapLen;
+        tag = Name.charAt(0);
     }
 
     public Vector<Street> streetsOwned = new Vector();
     Scanner input = new Scanner(System.in);
     public int x;
     public int y;
+    public char tag;
     public boolean isInJail = false;
     public boolean isRentPaid = false;
     private int salary = 200;
