@@ -10,7 +10,7 @@ public class Player {
         y = yPos;
     }
 
-    Player(int xPos, int yPos, String Name,int[] mapLen) {
+    Player(int xPos, int yPos, String Name, int[] mapLen) {
         x = xPos;
         y = yPos;
         name = Name;
@@ -23,13 +23,15 @@ public class Player {
     public int y;
     public boolean isInJail = false;
     public boolean isRentPaid = false;
-    int balance = 2000;
+    private int salary = 200;
+    int balance = 1800;
     public String name;
 
     int[] mapLength = new int[4];
 
 
     public void move(int distance) {
+
         int nextX = x + distance;
         int mapLen = this.mapLength[y];
         if (nextX >= mapLen) {
@@ -37,23 +39,45 @@ public class Player {
             if (nextX - mapLen >= nextLength) {
                 x = nextX - mapLen - nextLength;
                 y += 2;
-                if (y > 3) y -= 4;
+                if (y > 3) {
+                    y -= 4;
+                    getSalary();
+                }
             } else {
                 x = nextX - mapLen;
                 y++;
-                if (y > 3) y = 0;
+                if (y > 3) {
+                    y = 0;
+                    getSalary();
+                }
             }
         } else x += distance;
+        if (isGoingToJail()) goToJail();
     }
+
 
     public boolean haveMortgagedStreet() {
         for (int i = 0; i < streetsOwned.size(); i++) {
-            if(streetsOwned.get(i).mortgaged) return true;
+            if (streetsOwned.get(i).mortgaged) return true;
         }
         return false;
     }
 
+    private boolean isGoingToJail() {
+        return x == 0 && y == 3;
+    }
 
+    private void goToJail() {
+        System.out.println("You will go to jail and pass one move");
+        x = 0;
+        y = 1;
+        isInJail = true;
+    }
+
+    private void getSalary() {
+        System.out.println("You reached start, so you'll get salary");
+        balance += salary;
+    }
 
 
 }

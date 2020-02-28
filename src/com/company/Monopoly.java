@@ -19,6 +19,7 @@ public class Monopoly {
     boolean isRunning = true;
     private int turn = 0;
 
+
     public void init() {
         System.out.print("How many players will play? : ");
         numOfPlayers = input.nextInt();
@@ -35,16 +36,18 @@ public class Monopoly {
     public void update() {
         checkForWinner();
         System.out.println(player.get(index).name + " is on turn");
-/*
+
+        int dice;
         if(!player.get(index).isInJail) {
             System.out.println("Press enter to roll dices");
             promptEnterKey();
-            int dice = rollAndReturnDices();
-            player.get(index).move(dice);
-        }*/
-        //else player.get(index).isInJail = false;
+            dice = rollAndReturnDices();
+        }
+        else {
+            player.get(index).isInJail = false;
+            dice = 0;
+        }
 
-        int dice = input.nextInt();
         player.get(index).move(dice);
 
         printMapAndPlayers();
