@@ -21,15 +21,9 @@ public class Monopoly {
 
 
     public void init() {
-        System.out.print("How many players will play? : ");
-        numOfPlayers = input.nextInt();
+        initNumOfPlayer();
 
-        for (int i = 1; i <= numOfPlayers; i++) {
-            System.out.print("Name of player " + i + " is: ");
-            String name = input.next();
-            player.add(new Player(10, 3, name,
-                    new int[]{board.map[0].length, board.map[1].length, board.map[2].length, board.map[3].length}));
-        }
+        initializePlayers();
 
     }
 
@@ -74,6 +68,23 @@ public class Monopoly {
         }
     }
 
+    private void initNumOfPlayer() {
+        System.out.print("How many players will play? 2 - 4 : ");
+        numOfPlayers = input.nextInt();
+        if(numOfPlayers > 4 || numOfPlayers < 2) {
+            System.out.println("Invalid number for players");
+            initNumOfPlayer();
+        }
+    }
+
+    private void initializePlayers() {
+        for (int i = 1; i <= numOfPlayers; i++) {
+            System.out.print("Name of player " + i + " is: ");
+            String name = input.next();
+            player.add(new Player(10, 3, name,
+                    new int[]{board.map[0].length, board.map[1].length, board.map[2].length, board.map[3].length}));
+        }
+    }
 
     private int rollAndReturnDices() {
         Random rand = new Random();

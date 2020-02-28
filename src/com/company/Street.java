@@ -2,7 +2,7 @@ package com.company;
 
 public class Street {
 
-    Street(int xCoordinate, int yCoordinate, String color, int[] rent, int priceOfStreet){
+    Street(int xCoordinate, int yCoordinate, String color, int[] rent, int priceOfStreet) {
         x = xCoordinate;
         y = yCoordinate;
         price = priceOfStreet;
@@ -11,17 +11,20 @@ public class Street {
         initHousePrice(color);
         initRent(rent);
         tag = color.charAt(0);
-        if(color.equals("blueDark")) tag = 'D';
+        if (color.equals("blueDark")) tag = 'D';
         hasStreet = true;
     }
-    Street(int xCoordinate, int yCoordinate){
+
+    Street(int xCoordinate, int yCoordinate) {
         x = xCoordinate;
         y = yCoordinate;
         color = " ";
         tag = ' ';
         hasStreet = false;
     }
-    Street(){}
+
+    Street() {
+    }
 
     public int x;
     public int y;
@@ -37,8 +40,8 @@ public class Street {
     public String color;
     public String ownedBy = "";
 
-    public void printStreet(){
-        if(mortgaged) System.out.println("MORTGAGED - color: " + color + " | x: " + x + " | y: " + y
+    public void printStreet() {
+        if (mortgaged) System.out.println("MORTGAGED - color: " + color + " | x: " + x + " | y: " + y
                 + " | you can pay " + mortgage + "$ and return the street");
         else System.out.println("color: " + color + " | x: " + x + " | y: " + y
                 + " | price: " + price + "$ | mortgage for " + mortgage
@@ -46,8 +49,8 @@ public class Street {
                 + " number of houses: " + (numOfHouses <= 4 ? numOfHouses + " houses" : "1 hotel"));
     }
 
-    private void initHousePrice(String col){
-        switch (col){
+    private void initHousePrice(String col) {
+        switch (col) {
             case "Brown":
             case "blueLight":
                 housePrice = 50;
@@ -68,7 +71,8 @@ public class Street {
                 housePrice = 0;
         }
     }
-    private void initRent(int[] rent){
+
+    private void initRent(int[] rent) {
         for (int i = 0; i < rent.length; i++) this.rent[i] = rent[i];
     }
 
