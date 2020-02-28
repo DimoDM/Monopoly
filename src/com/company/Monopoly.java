@@ -1,5 +1,7 @@
 package com.company;
 
+import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Monopoly {
@@ -31,9 +33,10 @@ public class Monopoly {
     public void update() {
         System.out.println(player[index].name + " is on turn");
 
-
-        printMapAndPlayers();
-        int dice = input.nextInt();
+        System.out.println("Press enter to roll dices");
+        promptEnterKey();
+        
+        int dice = rollAndReturnDices();
         player[index].move(dice);
 
         printMapAndPlayers();
@@ -46,18 +49,25 @@ public class Monopoly {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private int rollAndReturnDices() {
+        Random rand = new Random();
+        int[] dices = {rand.nextInt(5) + 1, rand.nextInt(5) + 1};
+        System.out.println("You roll " + dices[0] + " and " + dices[1] + ". You move " + (dices[0] + dices[1]) + "steps forward");
+        return dices[0] + dices[1];
+    }
+
     private void printALotsOfRows() {
-        System.out.println("\n\n\n\n");
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
     private void printMapAndPlayers(){
-        printALotsOfRows();
         for (int i = 0; i < numOfPlayers; i++) board.map[player[i].y][player[i].x] = i + 1;
         board.print();
         for (int i = 0; i < numOfPlayers; i++) board.map[player[i].y][player[i].x] = 0;
     }
 
     private void endTurn(){
+        printALotsOfRows();
         index++;
         if (index > numOfPlayers - 1) index = 0;
     }
@@ -77,6 +87,9 @@ public class Monopoly {
 
     private void chooseAction(Street street, Player player) {
         System.out.println("Your balance is " + player.balance + "$");
+        if(player.streetsOwned.size() == 0) {
+            return;
+        }
         System.out.println("Enter 1 to mortgage street");
         System.out.println("Enter 2 to see all owned streets");
 
@@ -120,12 +133,20 @@ public class Monopoly {
                     break;
                 }
             case 4:
-                buildHouses();
+                if(hasCompletedStreets()) buildHouses();
                 playerActions();
                 break;
             case 0:
                 break;
 
+        }
+    }
+
+    public static void promptEnterKey(){
+        try {
+            int read = System.in.read(new byte[2]);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
